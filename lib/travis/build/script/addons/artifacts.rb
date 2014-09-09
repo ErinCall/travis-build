@@ -46,9 +46,11 @@ module Travis
               configure_env
               script.set 'PATH', '$HOME/bin:$PATH', echo: false
             end
-            script.fold 'artifacts.1' do
-              script.cmd "artifacts upload #{options}", assert: false
-            end
+            # XXX leave this unfolded until we figure out linking
+            # or a separate view or whatever
+            # script.fold 'artifacts.1' do
+            script.cmd "artifacts upload #{options}", assert: false
+            # end
             script.echo 'Done uploading artifacts', ansi: :yellow
           end
 
